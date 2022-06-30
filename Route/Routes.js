@@ -3,7 +3,6 @@ import User from '../models/userSchema.js';
 const routes = express.Router();
 
 // inserted todo-task to the server
-  
  routes.post('/', async (req, res)=> {
   try{
     const newUser = await User(req.body);
@@ -12,6 +11,17 @@ const routes = express.Router();
   }
   catch(error){
     res.send({error: error.message});
+  }
+ })
+
+ // api for getting data from server
+ routes.get('/', async(req, res)=> {
+  try{
+    const todoTask = await User.find();
+    res.send(todoTask);
+  }
+  catch(error){
+    res.send({error: error.message})
   }
  })
 
