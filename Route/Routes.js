@@ -25,6 +25,17 @@ const routes = express.Router();
   }
  })
 
+ // api for delete todo
+ routes.delete('/:id', async(req, res)=> {
+  try{
+    const deleteTodo = await User.findByIdAndDelete(req.params.id);
+    res.send(deleteUser);
+  }
+  catch(error){
+    res.send({error: error.message})
+  }
+ })
+
 
 
 export default routes;
