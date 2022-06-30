@@ -19,7 +19,7 @@ mongoose.connect(process.env.MONGODB_URI,()=> {
 
 // middleware
 app.use(bodyParser.json());
-app.use('api/user', route);
+app.use('/api/user', route);
 
 app.get('/', (req,res)=> {
   res.send('My Todos app running')

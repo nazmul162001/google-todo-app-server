@@ -1,8 +1,20 @@
 import express from 'express';
 import User from '../models/userSchema.js';
-const route = express.Router();
+const routes = express.Router();
 
-// create api
+// inserted todo-task to the server
+  
+ routes.post('/', async (req, res)=> {
+  try{
+    const newUser = await User(req.body);
+    await newUser.save();
+    res.send(newUser);
+  }
+  catch(error){
+    res.send({error: error.message});
+  }
+ })
 
 
-export default route;
+
+export default routes;
