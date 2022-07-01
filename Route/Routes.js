@@ -24,7 +24,7 @@ const routes = express.Router();
     res.send({error: error.message})
   }
  })
- // api for getting data from server
+ // api for getting single todo
  routes.get('/:id', async(req, res)=> {
   try{
     const todoTask = await User.find({_id: req.params.id});
@@ -55,6 +55,8 @@ const routes = express.Router();
       res.send({error : error.message})
   }
 })
+
+
 
 
 
