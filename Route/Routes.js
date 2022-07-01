@@ -24,6 +24,16 @@ const routes = express.Router();
     res.send({error: error.message})
   }
  })
+ // api for getting data from server
+ routes.get('/:id', async(req, res)=> {
+  try{
+    const todoTask = await User.find({_id: req.params.id});
+    res.send(todoTask);
+  }
+  catch(error){
+    res.send({error: error.message})
+  }
+ })
 
  // api for delete todo
  routes.delete('/:id', async(req, res)=> {
@@ -35,6 +45,16 @@ const routes = express.Router();
     res.send({error: error.message})
   }
  })
+
+ // api for update todo
+ routes.put('/:id', async(req , res)=>{
+  try {
+      const updateTodo = await User.findByIdAndUpdate(req.params.id , {$set: req.body});
+      res.send(updateTodo)
+  } catch (error) {
+      res.send({error : error.message})
+  }
+})
 
 
 
