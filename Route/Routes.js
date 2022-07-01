@@ -16,12 +16,24 @@ const routes = express.Router();
 
  // api for getting data from server
  routes.get('/', async(req, res)=> {
-  try{
-    const todoTask = await User.find();
-    res.send(todoTask);
+  const query = req.query.complete;
+  if(query){
+    try{
+      const todoTask = await User.find({complete: true});
+      res.send(todoTask);
+    }
+    catch(error){
+      res.send({error: error.message})
+    }
   }
-  catch(error){
-    res.send({error: error.message})
+  else{
+    try{
+      const todoTask = await User.find();
+      res.send(todoTask);
+    }
+    catch(error){
+      res.send({error: error.message})
+    }
   }
  })
  // api for getting single todo
@@ -34,6 +46,7 @@ const routes = express.Router();
     res.send({error: error.message})
   }
  })
+
 
  // api for delete todo
  routes.delete('/:id', async(req, res)=> {
@@ -55,6 +68,7 @@ const routes = express.Router();
       res.send({error : error.message})
   }
 })
+
 
 
 
